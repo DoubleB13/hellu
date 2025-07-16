@@ -1,0 +1,17 @@
+name: Notify QA Test
+
+on:
+  push:
+    branches:
+      - main     # hoặc dev, tùy team bạn merge vào đâu
+
+jobs:
+  trigger-qa:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger repo-test via repository_dispatch
+        run: |
+          curl -X POST https://api.github.com/repos/<teamQA>/repo-test/dispatches \
+            -H "Authorization: Bearer ${{ secrets.QA_DISPATCH_TOKEN }}" \
+            -H "Accept: application/vnd.github+json" \
+            -d '{"event_type":"trigger-qa-ci"}'
