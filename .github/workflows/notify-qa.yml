@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: Trigger repo-test via repository_dispatch
         run: |
-          curl -X POST https://github.com/DoubleB13/e2e-api-mobile/dispatches \
+          curl -X POST https://api.github.com/repos/DoubleB13/e2e-api-mobile/dispatches \
             -H "Authorization: Bearer ${{ secrets.QA_DISPATCH_TOKEN }}" \
             -H "Accept: application/vnd.github+json" \
             -d '{"event_type":"trigger-qa-ci"}'
